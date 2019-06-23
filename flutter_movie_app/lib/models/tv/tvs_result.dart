@@ -1,12 +1,12 @@
-class TvResult {
+class TVsResult {
   int page;
   int totalResults;
   int totalPages;
   List<Results> results;
 
-  TvResult({this.page, this.totalResults, this.totalPages, this.results});
+  TVsResult({this.page, this.totalResults, this.totalPages, this.results});
 
-  TvResult.fromJson(Map<String, dynamic> json) {
+  TVsResult.fromJson(Map<String, dynamic> json) {
     page = json['page'];
     totalResults = json['total_results'];
     totalPages = json['total_pages'];
