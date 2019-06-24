@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_movie_app/screens/main_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -8,26 +9,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Movie App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+          primarySwatch: Colors.blue,
+          primaryColor: Colors.white,
+          accentColor: Colors.black
       ),
-      home: Main()
-    );
-  }
-}
-
-class Main extends StatefulWidget {
-  @override
-  _MainState createState() => _MainState();
-}
-
-class _MainState extends State<Main> {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Scaffold(
-          body: Text('Hello'),
-        )
+      home: MainScreen(),
     );
   }
 }
