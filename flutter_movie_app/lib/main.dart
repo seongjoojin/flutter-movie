@@ -9,9 +9,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Movie App',
       theme: ThemeData(
-          primarySwatch: Colors.blue,
-          primaryColor: Colors.white,
-          accentColor: Colors.black
+        brightness: Brightness.dark,
       ),
       home: MainScreen(),
     );

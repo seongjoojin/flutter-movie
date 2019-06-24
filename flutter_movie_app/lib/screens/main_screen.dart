@@ -13,7 +13,7 @@ class _MainScreenState extends State<MainScreen> {
   UpcomingMoviesData _upcomingMoviesData;
 
   Future<UpcomingMoviesData> fetchData() async {
-    var response =  await http.get('https://api.themoviedb.org/3/movie/upcoming?api_key=yourkey&language=ko-KR&page=1');
+    var response =  await http.get('https://api.themoviedb.org/3/movie/upcoming?api_key=d83f75862b4550f378bf4c8d57f57fc9&language=ko-KR&page=1');
 
     UpcomingMoviesData result = UpcomingMoviesData.fromJson(json.decode(response.body));
 
@@ -37,6 +37,13 @@ class _MainScreenState extends State<MainScreen> {
             resizeToAvoidBottomInset: false,
             appBar: AppBar(
               title: Text("Movies"),
+              brightness: Brightness.dark,
+              backgroundColor: Colors.black,
+              textTheme: TextTheme(
+                title: TextStyle(
+                  fontSize: 18.0
+                )
+              ),
             ),
             body: Center(
             child: _upcomingMoviesData == null
@@ -47,9 +54,6 @@ class _MainScreenState extends State<MainScreen> {
                     height: MediaQuery.of(context).size.height / 3,
                     autoPlay: true,
                     viewportFraction: 1.0,
-                    enlargeCenterPage: true,
-                    aspectRatio: 2.0,
-
                       items: _upcomingMoviesData.results.map((data) {
                         print(data.id);
                         return Builder(
@@ -60,10 +64,62 @@ class _MainScreenState extends State<MainScreen> {
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
                                         image: NetworkImage('https://image.tmdb.org/t/p/w500/${data.backdropPath}'),
-                                        colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.6), BlendMode.dstATop),
+                                        colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.6), BlendMode.darken),
                                         fit: BoxFit.cover,
                                     )
                                 ),
+                              child: Padding(
+                                padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      width: 110,
+                                      height: 160,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(Radius.circular(2.5)),
+                                        image: DecorationImage(
+                                          image: NetworkImage('https://image.tmdb.org/t/p/w500/${data.posterPath}'),
+                                          fit: BoxFit.cover,
+                                        )
+                                      ),
+                                    ),
+                                    Container(
+                                      width: MediaQuery.of(context).size.width / 2,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(left: 16.0),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: <Widget>[
+                                             Text(
+                                                '${data.title}',
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 14,
+                                                ),
+                                            ),
+                                            data.voteAverage > 0 ?
+                                                Container(
+                                                  margin: const EdgeInsets.only(top: 20, bottom: 20),
+                                                  child: Text(
+                                                    '⭐ ${data.voteAverage}',
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight: FontWeight.w600,
+                                                      fontSize: 10
+                                                    ),
+                                                  ),
+                                                )
+                                                : null
+                                          ],
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
                             );
                           },
                         );
