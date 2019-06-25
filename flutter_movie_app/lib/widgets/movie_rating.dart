@@ -11,7 +11,7 @@ class MovieRating extends StatelessWidget {
     return Container(
       child: votes > 0 ?
       Text(
-        '⭐ ${votes}',
+        '⭐ $votes',
         style: TextStyle(
             color: inSlide ? Constants.tintColor : Constants.greyColor,
             fontWeight: FontWeight.w600,

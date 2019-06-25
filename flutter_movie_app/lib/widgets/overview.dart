@@ -12,7 +12,7 @@ class Overview extends StatelessWidget {
       overviewData.length > (inSlide ? 120 : 150)
           ?
       '${overviewData.substring(0, (inSlide ? 117 : 147))}...'
-          : '${overviewData}',
+          : '$overviewData',
       style: TextStyle(
         color: Constants.tintColor,
         fontSize: 12,
