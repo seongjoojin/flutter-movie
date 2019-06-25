@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_movie_app/models/movie/upcoming_movies_result.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:flutter_movie_app/util/const.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -95,24 +96,60 @@ class _MainScreenState extends State<MainScreen> {
                                              Text(
                                                 '${data.title}',
                                                 style: TextStyle(
-                                                  color: Colors.white,
+                                                  color: Constants.tintColor,
                                                   fontWeight: FontWeight.w600,
                                                   fontSize: 14,
                                                 ),
                                             ),
+                                            const SizedBox(height: 10),
                                             data.voteAverage > 0 ?
-                                                Container(
-                                                  margin: const EdgeInsets.only(top: 20, bottom: 20),
-                                                  child: Text(
-                                                    '⭐ ${data.voteAverage}',
-                                                    style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontWeight: FontWeight.w600,
-                                                      fontSize: 10
-                                                    ),
+                                                Text(
+                                                  '⭐ ${data.voteAverage}',
+                                                  style: TextStyle(
+                                                    color: Constants.tintColor,
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: 10
                                                   ),
                                                 )
-                                                : null
+                                                : Text(
+                                                  '⭐ 0',
+                                                  style: TextStyle(
+                                                      color: Constants.tintColor,
+                                                      fontWeight: FontWeight.w600,
+                                                      fontSize: 10
+                                                  ),
+                                                ),
+                                            const SizedBox(height: 10),
+                                            Text(
+                                              data.overview.length > 120 ?
+                                              '${data.overview.substring(0, 117)}...' : '${data.overview}' ,
+                                              style: TextStyle(
+                                                color: Constants.tintColor,
+                                                fontSize: 12,
+                                              ),
+                                            ),
+                                            ButtonTheme(
+                                              minWidth: 64.0,
+                                              height: 32.0,
+                                              child: RaisedButton(
+                                                onPressed: () {},
+                                                color: Color(0xffe74c3c),
+                                                textColor: Colors.white,
+                                                padding: const EdgeInsets.all(0.0),
+                                                child: Container(
+                                                  decoration: const BoxDecoration(
+                                                    borderRadius: BorderRadius.all(Radius.circular(2.5)),
+                                                  ),
+                                                  child: const Text(
+                                                    '더 보기',
+                                                    style: TextStyle(
+                                                      fontSize: 12,
+                                                      color: Colors.white,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            )
                                           ],
                                         ),
                                       ),
