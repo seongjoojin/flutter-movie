@@ -6,4 +6,7 @@ class Constants{
   static Color greyColor = Color(0xffbdc3c7);
   static Color inactiveColor = Color(0xff7f8c8d);
   static Color activeColor = Colors.white;
+
+  static String photoUrl = "https://image.tmdb.org/t/p/w500/";
+  static String apiUrl = "https://api.themoviedb.org/3/movie/";
 }
