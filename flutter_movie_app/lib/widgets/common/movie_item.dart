@@ -12,7 +12,6 @@ class MovieItem extends StatelessWidget {
     @required this.horizontal,
     @required this.overview,
     @required this.isMovie,
-    @required this.navigation
   });
   final id;
   final posterPhoto;
@@ -21,11 +20,11 @@ class MovieItem extends StatelessWidget {
   final horizontal;
   final overview;
   final isMovie;
-  final navigation;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return Container(
+      child: GestureDetector(
         onTap: () {},
         child: horizontal ?
           Container(
@@ -60,7 +59,7 @@ class MovieItem extends StatelessWidget {
             ),
           ) : Container(
             margin: EdgeInsets.only(right: 20),
-            child: Row(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 MoviePoster(path: posterPhoto),
@@ -74,8 +73,8 @@ class MovieItem extends StatelessWidget {
                 MovieRating(votes: voteAvg, inSlide: false),
               ],
             ),
-          )
-        ,
-      );
+          ),
+      )
+    );
   }
 }

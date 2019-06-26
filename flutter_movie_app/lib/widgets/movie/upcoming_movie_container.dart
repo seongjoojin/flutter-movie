@@ -15,7 +15,7 @@ class _UpcomingMovieContainerState extends State<UpcomingMovieContainer> {
   UpcomingMoviesData _upcomingMoviesData;
 
   Future<UpcomingMoviesData> fetchData() async {
-    var response =  await http.get('${Constants.apiUrl}upcoming?api_key=d83f75862b4550f378bf4c8d57f57fc9&language=ko_KR&page=1');
+    var response =  await http.get('${Constants.apiUrl}movie/upcoming?api_key=d83f75862b4550f378bf4c8d57f57fc9&language=ko-KR&page=1');
 
     UpcomingMoviesData result = UpcomingMoviesData.fromJson(json.decode(response.body));
 
@@ -28,7 +28,6 @@ class _UpcomingMovieContainerState extends State<UpcomingMovieContainer> {
     fetchData().then((upcomingMoviesData) {
       setState(() {
         _upcomingMoviesData = upcomingMoviesData;
-        print(_upcomingMoviesData);
       });
     });
   }
@@ -36,36 +35,61 @@ class _UpcomingMovieContainerState extends State<UpcomingMovieContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: MediaQuery.of(context).size.width,
+      height: 100.0,
       decoration:  BoxDecoration(
         color: Colors.black
       ),
       child: _upcomingMoviesData == null
           ? Container(width: 0, height: 0)
-          : Column(
-            children: <Widget>[
-              SectionTitle(
-                  title: 'Upcoming Movies',
-              ),
-              ListView.builder(
-                  primary: false,
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: _upcomingMoviesData == null ? 0 : _upcomingMoviesData.results.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final item = _upcomingMoviesData.results[index];
-                    return MovieItem(
-                        id: item.id,
-                        title: item.title,
-                        voteAvg: item.voteAverage,
-                        overview: item.overview,
-                        posterPhoto: item.posterPath,
-                        isMovie: true,
-                        horizontal: false,
-                        navigation: 'detail',
-                      );
-                  })
-              ],
-          )
+          : 
+          Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  SectionTitle(
+                      title: 'Upcoming Movies',
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    child: ListView.builder(
+                      primary: false,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: _upcomingMoviesData == null ? 0 : _upcomingMoviesData.results.length,
+                      itemBuilder: (context, int index) {
+                        Results movieData = _upcomingMoviesData.results[index];
+
+                        return Row(
+                          children: <Widget>[
+                            MovieItem(
+                              id: movieData.id,
+                              title: movieData.title,
+                              voteAvg: movieData.voteAverage,
+                              overview: movieData.overview,
+                              posterPhoto: movieData.posterPath,
+                              isMovie: true,
+                              horizontal: false,
+                            )
+                          ],
+                        ); 
+                      }
+                    ),
+                  )
+                ],
+              )
+      );
+    }
+
+    Widget makeItem(ctx,data) {
+      return MovieItem(
+        id: data.id,
+        title: data.title,
+        voteAvg: data.voteAverage,
+        overview: data.overview,
+        posterPhoto: data.posterPath,
+        isMovie: true,
+        horizontal: false,
       );
     }
 }

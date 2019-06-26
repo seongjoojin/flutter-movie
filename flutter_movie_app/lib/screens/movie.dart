@@ -12,17 +12,17 @@ class _MovieState extends State<Movie> {
   @override
   Widget build(BuildContext context) {
     return new Material(
-        child: new SingleChildScrollView(
-          child: new ConstrainedBox(
-            constraints: new BoxConstraints(),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                MovieMainSlider(),
-                UpcomingMovieContainer(),
-              ],
-            )
-          ))
+        child: Container(
+          decoration:  BoxDecoration(
+            color: Colors.black
+          ),
+          child: Column(
+            children: <Widget>[
+              MovieMainSlider(),
+              UpcomingMovieContainer(),
+            ],
+          ),
+        )
     );
   }
 }

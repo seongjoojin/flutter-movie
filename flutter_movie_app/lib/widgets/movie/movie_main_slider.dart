@@ -16,7 +16,7 @@ class _MovieMainSliderState extends State<MovieMainSlider> {
   NowPlayingMoviesData _nowPlayingMoviesData;
 
   Future<NowPlayingMoviesData> fetchData() async {
-    var response =  await http.get('${Constants.apiUrl}now_playing?api_key=d83f75862b4550f378bf4c8d57f57fc9&language=ko-KR&page=1');
+    var response =  await http.get('${Constants.apiUrl}movie/now_playing?api_key=d83f75862b4550f378bf4c8d57f57fc9&language=ko-KR&page=1');
 
     NowPlayingMoviesData result = NowPlayingMoviesData.fromJson(json.decode(response.body));
 

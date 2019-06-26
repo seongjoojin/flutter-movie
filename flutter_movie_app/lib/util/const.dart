@@ -8,5 +8,5 @@ class Constants{
   static Color activeColor = Colors.white;
 
   static String photoUrl = "https://image.tmdb.org/t/p/w500/";
-  static String apiUrl = "https://api.themoviedb.org/3/movie/";
+  static String apiUrl = "https://api.themoviedb.org/3/";
 }
