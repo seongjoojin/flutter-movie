@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter_movie_app/widgets/movie_poster.dart';
-import 'package:flutter_movie_app/widgets/movie_rating.dart';
-import 'package:flutter_movie_app/widgets/overview.dart';
+import 'package:flutter_movie_app/widgets/common/movie_poster.dart';
+import 'package:flutter_movie_app/widgets/common/movie_rating.dart';
+import 'package:flutter_movie_app/widgets/common/overview.dart';
 
 class MovieItem extends StatelessWidget {
   MovieItem({
@@ -26,8 +25,7 @@ class MovieItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: GestureDetector(
+    return GestureDetector(
         onTap: () {},
         child: horizontal ?
           Container(
@@ -78,7 +76,6 @@ class MovieItem extends StatelessWidget {
             ),
           )
         ,
-      ),
-    );
+      );
   }
 }
