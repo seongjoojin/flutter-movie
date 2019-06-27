@@ -29,12 +29,14 @@ class MovieItem extends StatelessWidget {
         child: horizontal ?
           Container(
             margin: EdgeInsets.only(bottom: 20),
-            child: Column(
+            child: Row(
               children: <Widget>[
                 MoviePoster(path: posterPhoto),
                 Container(
+                  width: MediaQuery.of(context).size.width / 2,
                   margin: EdgeInsets.only(left: 20),
-                  child: Row(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       SizedBox(
                         height: 5,
@@ -50,6 +52,9 @@ class MovieItem extends StatelessWidget {
                         height: 5,
                       ),
                       MovieRating(votes: voteAvg, inSlide: false),
+                      SizedBox(
+                        height: 10,
+                      ),
                       Overview(overviewData: overview, inSlide: false),
                     ],
                   ),

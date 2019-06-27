@@ -40,49 +40,45 @@ class _PopularMovieState extends State<PopularMovie> {
         decoration:  BoxDecoration(
             color: Colors.black
         ),
-        child: new SingleChildScrollView(
-            child: new ConstrainedBox(
-              constraints: new BoxConstraints(),
-              child: _popularMoviesData == null
-                  ? Container(width: 0, height: 0)
-                  : Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  SectionTitle(
-                    title: 'Popular Movies',
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height,
-                    child: new ListView.builder(
-                        primary: false,
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemCount: _popularMoviesData == null ? 0 : _popularMoviesData.results.length,
-                        itemBuilder: (context, int index) {
-                          Results popularMovieData = _popularMoviesData.results[index];
+        child: _popularMoviesData == null
+            ? Container(width: 0, height: 0)
+            : Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            SectionTitle(
+              title: 'Popular Movies',
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: 3600,
+              child: new ListView.builder(
+                  primary: false,
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  scrollDirection: Axis.vertical,
+                  itemCount: _popularMoviesData == null ? 0 : _popularMoviesData.results.length,
+                  itemBuilder: (context, int index) {
+                    Results popularMovieData = _popularMoviesData.results[index];
 
-                          return new Column(
-                            children: <Widget>[
-                              MovieItem(
-                                id: popularMovieData.id,
-                                title: popularMovieData.title,
-                                voteAvg: popularMovieData.voteAverage,
-                                overview: popularMovieData.overview,
-                                posterPhoto: popularMovieData.posterPath,
-                                isMovie: true,
-                                horizontal: true,
-                              )
-                            ],
-                          );
-                        }
-                    ),
-                  )
-                ],
+                    return new Column(
+                      children: <Widget>[
+                        MovieItem(
+                          id: popularMovieData.id,
+                          title: popularMovieData.title,
+                          voteAvg: popularMovieData.voteAverage,
+                          overview: popularMovieData.overview,
+                          posterPhoto: popularMovieData.posterPath,
+                          isMovie: true,
+                          horizontal: true,
+                        )
+                      ],
+                    );
+                  }
               ),
             )
+          ],
         )
-    );
-  }
+      );
+    }
 }
