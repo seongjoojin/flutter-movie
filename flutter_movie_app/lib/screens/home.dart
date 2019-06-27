@@ -45,7 +45,12 @@ class _HomeState extends State<Home> {
                   )
               ),
             ),
-            body: _children[_currentIndex],
+            body: Container(
+              decoration:  BoxDecoration(
+                  color: Colors.black
+              ),
+              child: _children[_currentIndex]
+            ),
             bottomNavigationBar: BottomNavigationBar(
               onTap: onTabTapped,
               currentIndex: _currentIndex,

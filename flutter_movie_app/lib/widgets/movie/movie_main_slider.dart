@@ -40,40 +40,46 @@ class _MovieMainSliderState extends State<MovieMainSlider> {
       decoration: BoxDecoration(
         color: Colors.black
       ),
-      child: Center(
-          child: _nowPlayingMoviesData == null
-                    ? CircularProgressIndicator()
-                    : Column(
-                  children: [
-                    CarouselSlider(
-                        height: MediaQuery.of(context).size.height / 3,
-                        autoPlay: true,
-                        viewportFraction: 1.0,
-                        pauseAutoPlayOnTouch: Duration(seconds: 10),
-                        items: _nowPlayingMoviesData.results.map((data) {
-                          return Builder(
-                            builder: (BuildContext context) {
-                              return Container(
-                                    width: MediaQuery.of(context).size.width,
-                                    height: MediaQuery.of(context).size.height / 4,
-                                    decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image: NetworkImage('${Constants.photoUrl+data.backdropPath}'),
-                                      colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.6), BlendMode.darken),
-                                      fit: BoxFit.cover,
-                                    )
-                                ),
-                                child: MovieSlider(
-                                  movieData: data,
-                                )
-                              );
-                            }
-                          );
-                        }).toList()
-                    ),
-                  ],
+      child: _nowPlayingMoviesData == null
+            ? Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height / 2,
+                alignment: Alignment(0.0, 0.0),
+                padding: const EdgeInsets.all(8.0),
+                child:Center(
+                    child: CircularProgressIndicator(),
                 )
+              )
+            : Column(
+              children: [
+                CarouselSlider(
+                  height: MediaQuery.of(context).size.height / 3,
+                  autoPlay: true,
+                  viewportFraction: 1.0,
+                  pauseAutoPlayOnTouch: Duration(seconds: 10),
+                  items: _nowPlayingMoviesData.results.map((data) {
+                    return Builder(
+                      builder: (BuildContext context) {
+                        return Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: MediaQuery.of(context).size.height / 4,
+                              decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: NetworkImage('${Constants.photoUrl+data.backdropPath}'),
+                                colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.6), BlendMode.darken),
+                                fit: BoxFit.cover,
+                              )
+                          ),
+                          child: MovieSlider(
+                            movieData: data,
+                          )
+                        );
+                      }
+                    );
+                  }).toList()
             ),
+          ],
+        )
     );
   }
 }

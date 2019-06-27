@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movie_app/widgets/movie/movie_main_slider.dart';
-import 'package:flutter_movie_app/widgets/movie/upcoming_movie_container.dart';
+import 'package:flutter_movie_app/widgets/movie/upcoming_movie.dart';
+import 'package:flutter_movie_app/widgets/movie/popular_movie.dart';
 
 
 class Movie extends StatefulWidget {
@@ -19,7 +20,8 @@ class _MovieState extends State<Movie> {
           child: Column(
             children: <Widget>[
               MovieMainSlider(),
-              UpcomingMovieContainer(),
+              UpcomingMovie(),
+              PopularMovie(),
             ],
           ),
         )

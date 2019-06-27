@@ -33,7 +33,6 @@ class MovieItem extends StatelessWidget {
               children: <Widget>[
                 MoviePoster(path: posterPhoto),
                 Container(
-                  width: MediaQuery.of(context).size.height / 1,
                   margin: EdgeInsets.only(left: 20),
                   child: Row(
                     children: <Widget>[
