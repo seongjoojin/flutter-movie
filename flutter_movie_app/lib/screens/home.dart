@@ -32,47 +32,51 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: Scaffold(
+      title: 'Flutter Movie App',
+      theme: new ThemeData(
+        brightness: Brightness.dark,
+        backgroundColor: Colors.black
+      ),
+      home: Scaffold(
+          resizeToAvoidBottomInset: false,
+          appBar: AppBar(
+            title: Text("${_listTitleText[_currentIndex]}"),
+            brightness: Brightness.dark,
             backgroundColor: Colors.black,
-            resizeToAvoidBottomInset: false,
-            appBar: AppBar(
-              title: Text("${_listTitleText[_currentIndex]}"),
-              brightness: Brightness.dark,
-              backgroundColor: Colors.black,
-              textTheme: TextTheme(
-                  title: TextStyle(
-                      fontSize: 18.0
-                  )
-              ),
-            ),
-            body: Container(
-              decoration:  BoxDecoration(
-                  color: Colors.black
-              ),
-              child: _children[_currentIndex]
-            ),
-            bottomNavigationBar: BottomNavigationBar(
-              onTap: onTabTapped,
-              currentIndex: _currentIndex,
-              items: [
-                BottomNavigationBarItem(
-                  title: Text('Movie'),
-                  icon: Icon(Icons.movie),
-                ),
-                BottomNavigationBarItem(
-                  title: Text('TV'),
-                  icon: Icon(Icons.tv)
-                ),
-                BottomNavigationBarItem(
-                  title: Text('Search'),
-                  icon: Icon(Icons.search)
+            textTheme: TextTheme(
+                title: TextStyle(
+                    fontSize: 18.0
                 )
-              ],
-              backgroundColor: Colors.black,
-              selectedItemColor: Colors.white,
-              unselectedItemColor: Constants.greyColor,
             ),
-        )
+          ),
+          body: Container(
+            decoration:  BoxDecoration(
+                color: Colors.black
+            ),
+            child: _children[_currentIndex]
+          ),
+          bottomNavigationBar: BottomNavigationBar(
+            onTap: onTabTapped,
+            currentIndex: _currentIndex,
+            items: [
+              BottomNavigationBarItem(
+                title: Text('Movie'),
+                icon: Icon(Icons.movie),
+              ),
+              BottomNavigationBarItem(
+                title: Text('TV'),
+                icon: Icon(Icons.tv)
+              ),
+              BottomNavigationBarItem(
+                title: Text('Search'),
+                icon: Icon(Icons.search)
+              )
+            ],
+            backgroundColor: Colors.black,
+            selectedItemColor: Colors.white,
+            unselectedItemColor: Constants.greyColor,
+          ),
+      )
     );
   }
 }

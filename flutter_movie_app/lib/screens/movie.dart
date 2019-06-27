@@ -14,6 +14,7 @@ class _MovieState extends State<Movie> {
   Widget build(BuildContext context) {
     return new Material(
         child: SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
             child:
               Container(
               decoration:  BoxDecoration(
