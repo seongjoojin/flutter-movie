@@ -14,11 +14,9 @@ class MoviePoster extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(2.5)),
           image: DecorationImage(
-            image: NetworkImage(
-                '${Constants.photoUrl+path}'),
+            image: NetworkImage('${Constants.photoUrl + path}'),
             fit: BoxFit.cover,
-          )
-      ),
+          )),
     );
   }
 }

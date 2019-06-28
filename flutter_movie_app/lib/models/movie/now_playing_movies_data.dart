@@ -1,4 +1,3 @@
-
 class NowPlayingMoviesData {
   List<Results> results;
   int page;

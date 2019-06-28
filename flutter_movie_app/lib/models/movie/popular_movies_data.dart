@@ -4,7 +4,8 @@ class PopularMoviesData {
   int totalPages;
   List<Results> results;
 
-  PopularMoviesData({this.page, this.totalResults, this.totalPages, this.results});
+  PopularMoviesData(
+      {this.page, this.totalResults, this.totalPages, this.results});
 
   PopularMoviesData.fromJson(Map<String, dynamic> json) {
     page = json['page'];
@@ -48,19 +49,19 @@ class Results {
 
   Results(
       {this.voteCount,
-        this.id,
-        this.video,
-        this.voteAverage,
-        this.title,
-        this.popularity,
-        this.posterPath,
-        this.originalLanguage,
-        this.originalTitle,
-        this.genreIds,
-        this.backdropPath,
-        this.adult,
-        this.overview,
-        this.releaseDate});
+      this.id,
+      this.video,
+      this.voteAverage,
+      this.title,
+      this.popularity,
+      this.posterPath,
+      this.originalLanguage,
+      this.originalTitle,
+      this.genreIds,
+      this.backdropPath,
+      this.adult,
+      this.overview,
+      this.releaseDate});
 
   Results.fromJson(Map<String, dynamic> json) {
     voteCount = json['vote_count'];

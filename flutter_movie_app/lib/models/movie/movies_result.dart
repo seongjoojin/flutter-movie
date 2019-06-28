@@ -11,15 +11,15 @@ class MoviesResult {
     totalResults = json['total_results'];
     totalPages = json['total_pages'];
     if (json['results'] != null) {
-      results = new List<Results>();
+      results = List<Results>();
       json['results'].forEach((v) {
-        results.add(new Results.fromJson(v));
+        results.add(Results.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['page'] = this.page;
     data['total_results'] = this.totalResults;
     data['total_pages'] = this.totalPages;
@@ -48,19 +48,19 @@ class Results {
 
   Results(
       {this.voteCount,
-        this.id,
-        this.video,
-        this.voteAverage,
-        this.title,
-        this.popularity,
-        this.posterPath,
-        this.originalLanguage,
-        this.originalTitle,
-        this.genreIds,
-        this.backdropPath,
-        this.adult,
-        this.overview,
-        this.releaseDate});
+      this.id,
+      this.video,
+      this.voteAverage,
+      this.title,
+      this.popularity,
+      this.posterPath,
+      this.originalLanguage,
+      this.originalTitle,
+      this.genreIds,
+      this.backdropPath,
+      this.adult,
+      this.overview,
+      this.releaseDate});
 
   Results.fromJson(Map<String, dynamic> json) {
     voteCount = json['vote_count'];
@@ -80,7 +80,7 @@ class Results {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['vote_count'] = this.voteCount;
     data['id'] = this.id;
     data['video'] = this.video;
@@ -98,4 +98,3 @@ class Results {
     return data;
   }
 }
-

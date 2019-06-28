@@ -1,26 +1,25 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_movie_app/models/movie/upcoming_movies_data.dart';
+import 'package:flutter_movie_app/models/tv/airing_tv_data.dart';
 import 'package:flutter_movie_app/util/const.dart';
 import 'package:flutter_movie_app/widgets/common/movie_item.dart';
 import 'package:flutter_movie_app/widgets/common/section_title.dart';
 import 'package:http/http.dart' as http;
 
-class UpcomingMovie extends StatefulWidget {
+class AiringTV extends StatefulWidget {
   @override
-  _UpcomingMovieState createState() => _UpcomingMovieState();
+  _AiringTVState createState() => _AiringTVState();
 }
 
-class _UpcomingMovieState extends State<UpcomingMovie> {
-  UpcomingMoviesData _upcomingMoviesData;
+class _AiringTVState extends State<AiringTV> {
+  AiringTVData _airingTVData;
 
-  Future<UpcomingMoviesData> fetchData() async {
+  Future<AiringTVData> fetchData() async {
     var response = await http.get(
-        '${Constants.apiUrl}movie/upcoming?api_key=d83f75862b4550f378bf4c8d57f57fc9&language=ko-KR&page=1');
+        '${Constants.apiUrl}tv/airing_today?api_key=d83f75862b4550f378bf4c8d57f57fc9&language=ko-KR&page=1');
 
-    UpcomingMoviesData result =
-        UpcomingMoviesData.fromJson(json.decode(response.body));
+    AiringTVData result = AiringTVData.fromJson(json.decode(response.body));
 
     return result;
   }
@@ -28,9 +27,9 @@ class _UpcomingMovieState extends State<UpcomingMovie> {
   @override
   void initState() {
     super.initState();
-    fetchData().then((upcomingMoviesData) {
+    fetchData().then((airingTVData) {
       setState(() {
-        _upcomingMoviesData = upcomingMoviesData;
+        _airingTVData = airingTVData;
       });
     });
   }
@@ -43,14 +42,21 @@ class _UpcomingMovieState extends State<UpcomingMovie> {
       child: SingleChildScrollView(
           child: ConstrainedBox(
         constraints: BoxConstraints(),
-        child: _upcomingMoviesData == null
-            ? Container(width: 0, height: 0)
+        child: _airingTVData == null
+            ? Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height / 2,
+                alignment: Alignment(0.0, 0.0),
+                padding: const EdgeInsets.all(8.0),
+                child: Center(
+                  child: CircularProgressIndicator(),
+                ))
             : Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   SectionTitle(
-                    title: 'Upcoming Movies',
+                    title: 'Airing Today',
                   ),
                   Container(
                     width: MediaQuery.of(context).size.width,
@@ -59,22 +65,22 @@ class _UpcomingMovieState extends State<UpcomingMovie> {
                         primary: false,
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
-                        itemCount: _upcomingMoviesData == null
+                        itemCount: _airingTVData == null
                             ? 0
-                            : _upcomingMoviesData.results.length,
+                            : _airingTVData.results.length,
                         itemBuilder: (context, int index) {
                           Results upcomingMovieData =
-                              _upcomingMoviesData.results[index];
+                              _airingTVData.results[index];
 
                           return new Row(
                             children: <Widget>[
                               MovieItem(
                                 id: upcomingMovieData.id,
-                                title: upcomingMovieData.title,
+                                title: upcomingMovieData.name,
                                 voteAvg: upcomingMovieData.voteAverage,
                                 overview: upcomingMovieData.overview,
                                 posterPhoto: upcomingMovieData.posterPath,
-                                isMovie: true,
+                                isMovie: false,
                                 horizontal: false,
                               )
                             ],

@@ -5,14 +5,11 @@ void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Movie App',
-      theme: ThemeData(
-        brightness: Brightness.dark,
-      ),
-      home: Home(),
-    );
-  }
+  Widget build(BuildContext context) => MaterialApp(
+        title: 'Flutter Movie App',
+        theme: ThemeData(
+          brightness: Brightness.dark,
+        ),
+        home: Home(),
+      );
 }
-

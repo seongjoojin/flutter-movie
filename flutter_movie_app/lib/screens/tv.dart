@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_movie_app/widgets/tv/airing_tv.dart';
 
 class TV extends StatefulWidget {
   @override
@@ -8,8 +9,16 @@ class TV extends StatefulWidget {
 class _TVState extends State<TV> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('TV'),
-    );
+    return Material(
+        child: SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
+            child: Container(
+              decoration: BoxDecoration(color: Colors.black),
+              child: Column(
+                children: <Widget>[
+                  AiringTV(),
+                ],
+              ),
+            )));
   }
 }

@@ -10,17 +10,14 @@ class SectionTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: 
-          Container(
-            margin: EdgeInsets.only(bottom: 15, top: 20),
-            child: Text(
-              '$title',
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w600,
-              )
-            ),
-          ),
-      );
+      child: Container(
+        margin: EdgeInsets.only(bottom: 15, top: 20),
+        child: Text('$title',
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w600,
+            )),
+      ),
+    );
   }
 }

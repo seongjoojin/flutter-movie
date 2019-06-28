@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movie_app/widgets/movie/movie_main_slider.dart';
-import 'package:flutter_movie_app/widgets/movie/upcoming_movie.dart';
 import 'package:flutter_movie_app/widgets/movie/popular_movie.dart';
-
+import 'package:flutter_movie_app/widgets/movie/upcoming_movie.dart';
 
 class Movie extends StatefulWidget {
   @override
@@ -12,14 +11,11 @@ class Movie extends StatefulWidget {
 class _MovieState extends State<Movie> {
   @override
   Widget build(BuildContext context) {
-    return new Material(
+    return Material(
         child: SingleChildScrollView(
             physics: BouncingScrollPhysics(),
-            child:
-              Container(
-              decoration:  BoxDecoration(
-                  color: Colors.black
-              ),
+            child: Container(
+              decoration: BoxDecoration(color: Colors.black),
               child: Column(
                 children: <Widget>[
                   MovieMainSlider(),
@@ -27,8 +23,6 @@ class _MovieState extends State<Movie> {
                   PopularMovie(),
                 ],
               ),
-            )
-        )
-    );
+            )));
   }
 }

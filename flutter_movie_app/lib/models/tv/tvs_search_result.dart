@@ -4,7 +4,8 @@ class TVsSearchResult {
   int totalPages;
   List<Results> results;
 
-  TVsSearchResult({this.page, this.totalResults, this.totalPages, this.results});
+  TVsSearchResult(
+      {this.page, this.totalResults, this.totalPages, this.results});
 
   TVsSearchResult.fromJson(Map<String, dynamic> json) {
     page = json['page'];
@@ -47,18 +48,18 @@ class Results {
 
   Results(
       {this.originalName,
-        this.id,
-        this.name,
-        this.voteCount,
-        this.voteAverage,
-        this.posterPath,
-        this.firstAirDate,
-        this.popularity,
-        this.genreIds,
-        this.originalLanguage,
-        this.backdropPath,
-        this.overview,
-        this.originCountry});
+      this.id,
+      this.name,
+      this.voteCount,
+      this.voteAverage,
+      this.posterPath,
+      this.firstAirDate,
+      this.popularity,
+      this.genreIds,
+      this.originalLanguage,
+      this.backdropPath,
+      this.overview,
+      this.originCountry});
 
   Results.fromJson(Map<String, dynamic> json) {
     originalName = json['original_name'];
@@ -94,4 +95,3 @@ class Results {
     return data;
   }
 }
-

@@ -4,7 +4,8 @@ class MoviesSearchResult {
   int totalResults;
   int totalPages;
 
-  MoviesSearchResult({this.page, this.results, this.totalResults, this.totalPages});
+  MoviesSearchResult(
+      {this.page, this.results, this.totalResults, this.totalPages});
 
   MoviesSearchResult.fromJson(Map<String, dynamic> json) {
     page = json['page'];
@@ -48,19 +49,19 @@ class Results {
 
   Results(
       {this.posterPath,
-        this.adult,
-        this.overview,
-        this.releaseDate,
-        this.genreIds,
-        this.id,
-        this.originalTitle,
-        this.originalLanguage,
-        this.title,
-        this.backdropPath,
-        this.popularity,
-        this.voteCount,
-        this.video,
-        this.voteAverage});
+      this.adult,
+      this.overview,
+      this.releaseDate,
+      this.genreIds,
+      this.id,
+      this.originalTitle,
+      this.originalLanguage,
+      this.title,
+      this.backdropPath,
+      this.popularity,
+      this.voteCount,
+      this.video,
+      this.voteAverage});
 
   Results.fromJson(Map<String, dynamic> json) {
     posterPath = json['poster_path'];
@@ -98,4 +99,3 @@ class Results {
     return data;
   }
 }
-

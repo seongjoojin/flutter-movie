@@ -1,12 +1,12 @@
-class TVsResult {
+class AiringTVData {
   int page;
   int totalResults;
   int totalPages;
   List<Results> results;
 
-  TVsResult({this.page, this.totalResults, this.totalPages, this.results});
+  AiringTVData({this.page, this.totalResults, this.totalPages, this.results});
 
-  TVsResult.fromJson(Map<String, dynamic> json) {
+  AiringTVData.fromJson(Map<String, dynamic> json) {
     page = json['page'];
     totalResults = json['total_results'];
     totalPages = json['total_pages'];
@@ -41,24 +41,24 @@ class Results {
   String backdropPath;
   String originalLanguage;
   int id;
-  double voteAverage;
+  var voteAverage;
   String overview;
   String posterPath;
 
   Results(
       {this.originalName,
-      this.genreIds,
-      this.name,
-      this.popularity,
-      this.originCountry,
-      this.voteCount,
-      this.firstAirDate,
-      this.backdropPath,
-      this.originalLanguage,
-      this.id,
-      this.voteAverage,
-      this.overview,
-      this.posterPath});
+        this.genreIds,
+        this.name,
+        this.popularity,
+        this.originCountry,
+        this.voteCount,
+        this.firstAirDate,
+        this.backdropPath,
+        this.originalLanguage,
+        this.id,
+        this.voteAverage,
+        this.overview,
+        this.posterPath});
 
   Results.fromJson(Map<String, dynamic> json) {
     originalName = json['original_name'];
@@ -94,3 +94,4 @@ class Results {
     return data;
   }
 }
+
