@@ -1,25 +1,25 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_movie_app/models/tv/airing_tv_data.dart';
+import 'package:flutter_movie_app/models/tv/top_rated_tv_data.dart';
 import 'package:flutter_movie_app/util/const.dart';
 import 'package:flutter_movie_app/widgets/common/movie_item.dart';
 import 'package:flutter_movie_app/widgets/common/section_title.dart';
 import 'package:http/http.dart' as http;
 
-class AiringTV extends StatefulWidget {
+class TopRatedTV extends StatefulWidget {
   @override
-  _AiringTVState createState() => _AiringTVState();
+  _TopRatedTVState createState() => _TopRatedTVState();
 }
 
-class _AiringTVState extends State<AiringTV> {
-  AiringTVData _airingTVData;
+class _TopRatedTVState extends State<TopRatedTV> {
+  TopRatedTVData _topRatedTVData;
 
-  Future<AiringTVData> fetchData() async {
+  Future<TopRatedTVData> fetchData() async {
     var response = await http.get(
-        '${Constants.apiUrl}tv/airing_today?api_key=d83f75862b4550f378bf4c8d57f57fc9&language=ko-KR&page=1');
+        '${Constants.apiUrl}tv/top_rated?api_key=d83f75862b4550f378bf4c8d57f57fc9&language=ko-KR&page=1');
 
-    AiringTVData result = AiringTVData.fromJson(json.decode(response.body));
+    TopRatedTVData result = TopRatedTVData.fromJson(json.decode(response.body));
 
     return result;
   }
@@ -27,9 +27,9 @@ class _AiringTVState extends State<AiringTV> {
   @override
   void initState() {
     super.initState();
-    fetchData().then((airingTVData) {
+    fetchData().then((topRatedTVData) {
       setState(() {
-        _airingTVData = airingTVData;
+        _topRatedTVData = topRatedTVData;
       });
     });
   }
@@ -42,21 +42,14 @@ class _AiringTVState extends State<AiringTV> {
       child: SingleChildScrollView(
           child: ConstrainedBox(
         constraints: BoxConstraints(),
-        child: _airingTVData == null
-            ? Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height / 2,
-                alignment: Alignment(0.0, 0.0),
-                padding: const EdgeInsets.all(8.0),
-                child: Center(
-                  child: CircularProgressIndicator(),
-                ))
+        child: _topRatedTVData == null
+            ? Container(width: 0, height: 0)
             : Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   SectionTitle(
-                    title: 'Airing Today',
+                    title: 'Top Rated',
                   ),
                   Container(
                     width: MediaQuery.of(context).size.width,
@@ -65,20 +58,21 @@ class _AiringTVState extends State<AiringTV> {
                         primary: false,
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
-                        itemCount: _airingTVData == null
+                        itemCount: _topRatedTVData == null
                             ? 0
-                            : _airingTVData.results.length,
+                            : _topRatedTVData.results.length,
                         itemBuilder: (context, int index) {
-                          Results airingTVData = _airingTVData.results[index];
+                          Results topRatedTVData =
+                              _topRatedTVData.results[index];
 
                           return new Row(
                             children: <Widget>[
                               MovieItem(
-                                id: airingTVData.id,
-                                title: airingTVData.name,
-                                voteAvg: airingTVData.voteAverage,
-                                overview: airingTVData.overview,
-                                posterPhoto: airingTVData.posterPath,
+                                id: topRatedTVData.id,
+                                title: topRatedTVData.name,
+                                voteAvg: topRatedTVData.voteAverage,
+                                overview: topRatedTVData.overview,
+                                posterPhoto: topRatedTVData.posterPath,
                                 isMovie: false,
                                 horizontal: false,
                               )

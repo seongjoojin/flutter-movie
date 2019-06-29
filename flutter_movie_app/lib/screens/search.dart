@@ -6,8 +6,18 @@ class Search extends StatefulWidget {
 }
 
 class _SearchState extends State<Search> {
+  TextEditingController searchController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    return Container(child: Text('Search'));
+    return Container(
+        child: TextField(
+            autofocus: true,
+            controller: searchController,
+            onChanged: (v) => searchController.text = v,
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: 'Search movies and tv',
+            )));
   }
 }

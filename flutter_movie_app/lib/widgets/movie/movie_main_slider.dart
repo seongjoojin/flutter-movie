@@ -54,9 +54,8 @@ class _MovieMainSliderState extends State<MovieMainSlider> {
               viewportFraction: 1.0,
               pauseAutoPlayOnTouch: Duration(seconds: 10),
               items: _nowPlayingMoviesData.results.map((data) {
-                print(data.backdropPath);
-                Builder(builder: (BuildContext context) {
-                  Container(
+                return Builder(builder: (BuildContext context) {
+                  return Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height / 4,
                       decoration: BoxDecoration(
