@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_movie_app/screens/movie.dart';
-import 'package:flutter_movie_app/screens/search.dart';
 import 'package:flutter_movie_app/screens/tv.dart';
 import 'package:flutter_movie_app/util/const.dart';
 
@@ -12,8 +11,8 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _currentIndex = 0;
-  final List<Widget> _children = [Movie(), TV(), Search()];
-  final List<String> _listTitleText = ['Movies', 'TV', 'Search'];
+  final List<Widget> _children = [Movie(), TV()];
+  final List<String> _listTitleText = ['Movies', 'TV'];
 
   void onTabTapped(int index) {
     setState(() {
@@ -47,8 +46,6 @@ class _HomeState extends State<Home> {
                 icon: Icon(Icons.movie),
               ),
               BottomNavigationBarItem(title: Text('TV'), icon: Icon(Icons.tv)),
-              BottomNavigationBarItem(
-                  title: Text('Search'), icon: Icon(Icons.search))
             ],
             backgroundColor: Colors.black,
             selectedItemColor: Colors.white,
